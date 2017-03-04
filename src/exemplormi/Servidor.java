@@ -5,6 +5,10 @@
  */
 package exemplormi;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+
 /**
  *
  * @author aluno
@@ -15,7 +19,13 @@ public class Servidor {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try{
+            CalcRemote cr = new CalcRemote();
+            Naming.rebind("calculcadora", cr);            
+        } catch (RemoteException | MalformedURLException ex)
+        {
+            System.out.println("Erro ");
+        }
     }
     
 }
